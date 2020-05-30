@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+  {% block title %}Create User{% endblock %}
+        
+  {% block content %}
+    <div class="container">
+      <div class="col-4">
+        <h1>Create User</h1>
+        <ul>
+          {% for message in get_flashed_messages() %}
+            <h5 class="text-danger">{{ message }}</h5>
+          {% endfor %}  
+        </ul>
+        <form name="create_user_form" action="/users/new" method="POST" class="mb-3">
+          <div class="form-group">
+            <label for="first_name_input">First Name</label>
+            <input type="text" class="form-control" id="first_name_input" name="first_name" placeholder="Enter first name">
+          </div>
+          <div class="form-group">
+            <label for="last_name_input">Last Name</label>
+            <input type="text" class="form-control" id="last_name_input" name="last_name" placeholder="Enter last name">
+          </div>
+          <div class="form-group">
+            <label for="image_input">Image URL</label>
+            <input type="text" class="form-control" id="image_input" name="image_url" placeholder="Enter link to user image">
+          </div>
+          <a class="btn btn-outline-info" href="/users" role="button">Cancel</a>
+          <button type="submit" class="btn btn-success">Add</button>
+        </form>
+      <div class="col-8"></div>
+    </div>
+    
+  {% endblock %}    

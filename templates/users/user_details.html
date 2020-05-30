@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+  {% block title %}User Details{% endblock %}
+        
+  {% block content %}
+    <div class="container">
+      <div class="row">
+        <div class="col-2">
+          <img src="{{ user.image_url }}" class="w-100" alt="...">
+        </div>
+          <div class="col-10">
+            <h3 class="card-title">{{ user.full_name }}</h3>
+            <form action="/users/{{ user.id }}/delete" method="POST">
+              <a class="btn btn-primary" href="/users/{{user.id}}/edit" role="button">Edit</a>
+              <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+            <h4 class="mt-4">Posts</h4>
+            {% for post in posts %}
+              <li><a href="/posts/{{ post.id }}">'{{ post.title }}' <small>{{ post.friendly_datetime() }}</small></a></li>
+            {% endfor %}
+            <a class="btn btn-outline-info mt-4" href="/users" role="button">User List</a>
+            <a class="btn btn-info mt-4" href="/users/{{ user.id }}/posts/new" role="button">Add Post</a>
+          </div>
+      </div>
+    </div>
+  {% endblock %}    

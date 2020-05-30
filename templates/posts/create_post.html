@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+  {% block title %}Create Post{% endblock %}
+        
+  {% block content %}
+    <div class="container">
+      <div class="col-4">
+        <h1>Create Post for {{ user.full_name }}</h1>
+        {% for message in get_flashed_messages() %}
+            <h5 class="text-danger">{{ message }}</h5>
+        {% endfor %}
+        <form name="add_post_form" action="/users/{{ user.id }}/posts/new" method="POST" class="mb-3">
+          <div class="form-group">
+            <label for="title_input">Title</label>
+            <input type="text" class="form-control" id="title_input" name="title" placeholder="Enter title">
+          </div>
+          <div class="form-group">
+            <label for="content_input">Content</label>
+            <textarea class="form-control" id="content_input" name="content" placeholder="Enter content"></textarea>
+          </div>
+          <div class="mb-4">
+            {% if tags %}
+              {% for tag in tags %}
+                <input type="checkbox" id="{{ tag.id }}" name="tag" value="{{ tag.name }}">
+                <label for="{{ tag.id }}">{{ tag.name }}</label><br>
+              {% endfor %}
+            {% endif %}                
+          </div>           
+          <a class="btn btn-outline-info" href="/users/{{ user.id }}" role="button">Cancel</a>
+          <button type="submit" class="btn btn-success">Add</button>
+        </form>
+      <div class="col-8"></div>
+    </div>
+    
+  {% endblock %}    
+       

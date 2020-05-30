@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+  {% block title %}Edit Tag{% endblock %}
+        
+  {% block content %}
+    <div class="container">
+      <div class="col-4">
+        <h1>Edit Tag</h1>
+        {% for message in get_flashed_messages() %}
+            <h5 class="text-danger">{{ message }}</h5>
+        {% endfor %}
+        <form name="edit_tag_form" action="/tags/{{ tag.id }}/edit" method="POST" class="mb-3">
+          <div class="form-group">
+            <label for="name_input">Title</label>
+            <input type="text" class="form-control" id="name_input" name="name" value="{{ tag.name }}">
+          </div>       
+            <a class="btn btn-outline-info" href="/tags/{{ tag.id }}" role="button">Cancel</a>
+            <button type="submit" class="btn btn-success">Save</button>
+        </form>
+      <div class="col-8"></div>
+    </div>
+    
+    {% endblock %}    

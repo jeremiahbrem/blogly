@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+  {% block title %}Create Tag{% endblock %}
+        
+  {% block content %}
+    <div class="container">
+      <div class="col-4">
+        <h1>Create Tag</h1>
+        {% for message in get_flashed_messages() %}
+            <h5 class="text-danger">{{ message }}</h5>
+        {% endfor %}
+        <form name="add_tag_form" action="/tags/new" method="POST" class="mb-3">
+          <div class="form-group">
+            <label for="tag_input">Name</label>
+            <input type="text" class="form-control" id="tag_input" name="name" placeholder="Enter a tag name">
+          </div>
+          <a class="btn btn-outline-info" href="/tags" role="button">Cancel</a>
+          <button type="submit" class="btn btn-success">Add</button>
+        </form>
+      <div class="col-8"></div>
+    </div>
+    
+  {% endblock %}    
+       
